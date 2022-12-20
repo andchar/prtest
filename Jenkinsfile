@@ -10,7 +10,7 @@ pipeline {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     sh "env | grep -i 'branch\\|change\\|git\\|tag'"                       
-                    sh "echo fiture1"
+                    sh "echo fiture2"
                 }
             }
         }
