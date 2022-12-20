@@ -16,7 +16,7 @@ pipeline {
 
         stage('git env') {
             steps {
-                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                catchError(buildResult: 'SUCCESS', stageResult: 'SUCCESS') {
                     sh """
                         printenv BRANCH_NAME
                         printenv BRANCH_IS_PRIMARY
@@ -44,8 +44,9 @@ pipeline {
                         printenv GIT_AUTHOR_NAME
                         printenv GIT_COMMITTER_EMAIL
                         printenv GIT_AUTHOR_EMAIL
-                        """
-                        cleanWs()
+                    
+                    """
+                    cleanWs()
                 }
             }
         }
