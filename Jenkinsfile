@@ -9,7 +9,8 @@ pipeline {
         stage('env') {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    sh "env | grep -i 'branch\\|change\\|git\\|tag'"                       
+                    // sh "env | grep -i 'branch\\|change\\|git\\|tag'"                       
+                    sh "env"                       
                     sh "echo fiture2"
                 }
             }
