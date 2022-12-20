@@ -11,6 +11,9 @@ pipeline {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     sh 'env'                       
                 }
+            }
+        }
+
         stage('git env') {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
