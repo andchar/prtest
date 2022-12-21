@@ -12,19 +12,21 @@ pipeline {
                     // sh "env | grep -i 'branch\\|change\\|git\\|tag'"                       
                     // sh "env"                       
                     // A PR from any branch to rel/(release-name}-dev will run specific tests suite relevant to the repository.
-                    if (env.CHANGE_TARGET.matches("rel/(.*)-dev")){
-                        echo "A PR from any branch to rel/(release-name}-dev will run specific tests suite relevant to the repository."
-                    } 
-                    // A PR from rel/(release-name}-dev to rel/(release-name} will run Silver test suite.
-                    else if (env.CHANGE_BRANCH.matches("rel/(.*)-dev") && (env.CHANGE_TARGET.matches("rel/(.*)"))) {
-                        echo "A PR from rel/(release-name}-dev to rel/(release-name} will run Silver test suite."
-                    } 
-                    // A PR from rel/(release-name} to rel/(release-name}@promoted will run Golden test suite,
-                    else if (env.CHANGE_BRANCH.matches("rel/(.*)") && (env.CHANGE_TARGET.matches("rel/(.*)@promoted"))) {
-                        echo "A PR from rel/(release-name} to rel/(release-name}@promoted will run Golden test suite"
-                    } 
-                    else {
-                        echo "Invalid Branch"
+                    script {
+                        if (env.CHANGE_TARGET.matches("rel/(.*)-dev")){
+                            echo "A PR from any branch to rel/(release-name}-dev will run specific tests suite relevant to the repository."
+                        } 
+                        // A PR from rel/(release-name}-dev to rel/(release-name} will run Silver test suite.
+                        else if (env.CHANGE_BRANCH.matches("rel/(.*)-dev") && (env.CHANGE_TARGET.matches("rel/(.*)"))) {
+                            echo "A PR from rel/(release-name}-dev to rel/(release-name} will run Silver test suite."
+                        } 
+                        // A PR from rel/(release-name} to rel/(release-name}@promoted will run Golden test suite,
+                        else if (env.CHANGE_BRANCH.matches("rel/(.*)") && (env.CHANGE_TARGET.matches("rel/(.*)@promoted"))) {
+                            echo "A PR from rel/(release-name} to rel/(release-name}@promoted will run Golden test suite"
+                        } 
+                        else {
+                            echo "Invalid Branch"
+                        }
                     }
                 // }
             }
