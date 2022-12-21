@@ -8,9 +8,9 @@ pipeline {
     stages {
         stage('env') {
             steps {
-                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                // catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     // sh "env | grep -i 'branch\\|change\\|git\\|tag'"                       
-                    sh "env"                       
+                    // sh "env"                       
                     // A PR from any branch to rel/(release-name}-dev will run specific tests suite relevant to the repository.
                     if (env.CHANGE_TARGET.matches("rel/(.*)-dev")){
                         echo "A PR from any branch to rel/(release-name}-dev will run specific tests suite relevant to the repository."
@@ -26,7 +26,7 @@ pipeline {
                     else {
                         echo "Invalid Branch"
                     }
-                }
+                // }
             }
         }
 
