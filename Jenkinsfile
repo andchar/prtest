@@ -8,11 +8,27 @@ pipeline {
     stages {
         stage('env') {
             steps {
-                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                // catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     // sh "env | grep -i 'branch\\|change\\|git\\|tag'"                       
-                    sh "env"                       
-                    sh "echo fiture2"
-                }
+                    // sh "env"                       
+                    // A PR from any branch to rel/(release-name}-dev will run specific tests suite relevant to the repository.
+                    script {
+                        if (env.CHANGE_TARGET.matches("rel/(.*)-dev")){
+                            echo "A PR from any branch to rel/(release-name}-dev will run specific tests suite relevant to the repository."
+                        } 
+                        // A PR from rel/(release-name}-dev to rel/(release-name} will run Silver test suite.
+                        else if (env.CHANGE_BRANCH.matches("rel/(.*)-dev") && (env.CHANGE_TARGET.matches("rel/(.*)"))) {
+                            echo "A PR from rel/(release-name}-dev to rel/(release-name} will run Silver test suite."
+                        } 
+                        // A PR from rel/(release-name} to rel/(release-name}@promoted will run Golden test suite,
+                        else if (env.CHANGE_BRANCH.matches("rel/(.*)") && (env.CHANGE_TARGET.matches("rel/(.*)@promoted"))) {
+                            echo "A PR from rel/(release-name} to rel/(release-name}@promoted will run Golden test suite"
+                        } 
+                        else {
+                            echo "Invalid Branch"
+                        }
+                    }
+                // }
             }
         }
 
