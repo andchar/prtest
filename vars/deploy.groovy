@@ -16,7 +16,7 @@ def call(body) {
             env.each{
               println it
             } 
-            def testsTags = '@golden-run'
+            //def testsTags = '@golden-run'
             println testTags
           }
         }
