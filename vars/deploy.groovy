@@ -1,5 +1,6 @@
 def call(body) {
   def pipelineParams = [:]
+  def testsTags = ''
   body.resolveStrategy = Closure.DELEGATE_FIRST
   body.delegate = pipelineParams
   body()
@@ -15,8 +16,6 @@ def call(body) {
             env.each{
               println it
             } 
-            echo "##############################################"
-            sh "echo export"
           }
         }
       }
