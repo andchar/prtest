@@ -27,7 +27,8 @@ def call(body) {
             // } 
             //def testsTags = '@golden-run'
             // println testTags
-            params.tests_filter_tags = '@golden-run'
+            // params.tests_filter_tags = '@golden-run'
+            tests_tags = '@golden-run'
             sh "env"
           }
         }
