@@ -17,7 +17,7 @@ def call(body) {
               println it
             } 
             //def testsTags = '@golden-run'
-            // println testTags
+            println ${testTags}
           }
         }
       }
