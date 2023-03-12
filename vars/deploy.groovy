@@ -10,7 +10,7 @@ def call(body) {
     }
     
     environment {
-      TEST_TAGS = ${params.testTags}
+      TEST_TAGS = "${params.testTags}"
     }
 
     stages {
