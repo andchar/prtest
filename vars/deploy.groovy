@@ -1,6 +1,6 @@
 def call(body) {
   def pipelineParams = [:]
-  def testsTags = 'UNSET'
+  def testsTags = "UNSET"
   body.resolveStrategy = Closure.DELEGATE_FIRST
   body.delegate = pipelineParams
   body()
@@ -17,7 +17,7 @@ def call(body) {
               println it
             } 
             //def testsTags = '@golden-run'
-            println ${testTags}
+            println testTags
           }
         }
       }
