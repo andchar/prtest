@@ -8,9 +8,13 @@ def call(body) {
     agent { 
       label 'CEG-Centos-Andrii'
     }
-    
+
+    parameters {
+      string(name: 'tests_filter_tags', defaultValue: '@all', description: 'Filter test tags to run')
+    }
+
     environment {
-      TEST_TAGS = "${params.testTags}"
+      TEST_TAGS = "${params.tests_filter_tags}"
     }
 
     stages {
@@ -28,5 +32,6 @@ def call(body) {
         }
       }
     }
+
   }
 }
