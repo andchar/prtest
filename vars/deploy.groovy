@@ -15,7 +15,8 @@ def call(body) {
             env.each{
               println it
             } 
-            echo "Hello"
+            echo "##############################################"
+            sh "echo export"
           }
         }
       }
