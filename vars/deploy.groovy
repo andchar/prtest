@@ -1,6 +1,6 @@
 def call(body) {
   def pipelineParams = [:]
-  def testsTags = "UNSET"
+  pipelineParams['testTags'] = '@all'
   body.resolveStrategy = Closure.DELEGATE_FIRST
   body.delegate = pipelineParams
   body()
@@ -8,6 +8,11 @@ def call(body) {
     agent { 
       label 'CEG-Centos-Andrii'
     }
+    
+    environment {
+      TEST_TAGS = ${params.testTags}
+    }
+
     stages {
       stage('Test print') {
         steps {
