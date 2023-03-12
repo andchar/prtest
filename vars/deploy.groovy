@@ -4,7 +4,9 @@ def call(body) {
   body.delegate = pipelineParams
   body()
   pipeline {
-    agent { any }
+    agent { 
+      label 'CEG-Centos-Andrii'
+    }
     stages {
       stage('Test print') {
         steps {
