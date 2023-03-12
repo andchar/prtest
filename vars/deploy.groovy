@@ -1,6 +1,6 @@
 def call(body) {
   def pipelineParams = [:]
-  def testsTags = ''
+  def testsTags = 'UNSET'
   body.resolveStrategy = Closure.DELEGATE_FIRST
   body.delegate = pipelineParams
   body()
