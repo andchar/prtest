@@ -12,12 +12,13 @@ def call(body) {
       stage('Test print') {
         steps {
           script {
-            def env = System.getenv()
-            env.each{
-              println it
-            } 
+            // def env = System.getenv()
+            // env.each{
+            //   println it
+            // } 
             //def testsTags = '@golden-run'
-            println testTags
+            // println testTags
+            sh "env"
           }
         }
       }
