@@ -30,7 +30,7 @@ def call(body) {
             // params.tests_filter_tags = '@golden-run'
             tests_tags = '@golden-run'
             println test_tags
-            sh "env"
+            sh "echo ${test_tags}"
           }
         }
       }
